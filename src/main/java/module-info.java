@@ -12,5 +12,9 @@ module jackson.compat11 {
     requires com.fasterxml.jackson.dataformat.protobuf;
     requires com.fasterxml.jackson.dataformat.smile;
     requires com.fasterxml.jackson.dataformat.xml;
-    requires com.fasterxml.jackson.dataformat.yaml;
+//    requires com.fasterxml.jackson.dataformat.yaml;
+
+   // and then some base modules as well
+    requires java.xml.bind;
+    requires com.fasterxml.jackson.module.jaxb;
 }

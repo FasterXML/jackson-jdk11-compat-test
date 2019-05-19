@@ -11,7 +11,6 @@ import com.fasterxml.jackson.dataformat.javaprop.JavaPropsMapper;
 import com.fasterxml.jackson.dataformat.protobuf.ProtobufMapper;
 import com.fasterxml.jackson.dataformat.smile.databind.SmileMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 /**
  * Manually run tests, separate from unit tests, just so we can exercise Module loading
@@ -59,7 +58,7 @@ public class ManualFormatTest
 
         testSimpleFormat(input, new JsonMapper());
         testSimpleFormat(input, new JavaPropsMapper());
-        testSimpleFormat(input, new YAMLMapper());
+//        testSimpleFormat(input, new YAMLMapper());
         testSimpleFormat(input, new XmlMapper());
 
         // Binary formats, non-schema:
