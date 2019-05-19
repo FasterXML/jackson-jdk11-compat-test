@@ -1,5 +1,6 @@
 module jackson.compat11 {
     // we get annotations, streaming, too, via databind:
+    requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.databind; 
 
     // but formats require explicit inclusion
