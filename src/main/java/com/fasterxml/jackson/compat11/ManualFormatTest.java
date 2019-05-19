@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.dataformat.avro.AvroMapper;
 import com.fasterxml.jackson.dataformat.cbor.databind.CBORMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.ion.IonObjectMapper;
 import com.fasterxml.jackson.dataformat.javaprop.JavaPropsMapper;
 import com.fasterxml.jackson.dataformat.protobuf.ProtobufMapper;
@@ -18,28 +19,28 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
  */
 public class ManualFormatTest
 {
-    static void testSimpleFormat(FiveMinuteUser input,
+    static <T> void testSimpleFormat(T input,
             ObjectMapper mapper) throws Exception
     {
-        testFormat(input, mapper.readerFor(FiveMinuteUser.class),
-                mapper.writerFor(FiveMinuteUser.class));
+        testFormat(input, mapper.readerFor(input.getClass()),
+                mapper.writerFor(input.getClass()));
     }
 
-    static void testSchemaFormat(FiveMinuteUser input,
+    static <T> void testSchemaFormat(T input,
             ObjectMapper mapper, FormatSchema schema) throws Exception
     {
         testFormat(input,
-                mapper.readerFor(FiveMinuteUser.class).with(schema),
-                mapper.writerFor(FiveMinuteUser.class).with(schema));
+                mapper.readerFor(input.getClass()).with(schema),
+                mapper.writerFor(input.getClass()).with(schema));
     }
     
-    static void testFormat(FiveMinuteUser input,
+    static <T> void testFormat(T input,
             ObjectReader r, ObjectWriter w) throws Exception
     {
         System.out.println("Testing: format '"+r.getFactory().getFormatName()+"'");
 
         byte[] ser = w.writeValueAsBytes(input);
-        FiveMinuteUser result = r.readValue(ser);
+        T result = r.readValue(ser);
 
         if (!input.equals(result)) {
             throw new Error("Mismatch for reader of type "+r.getFactory().getFormatName());
@@ -51,8 +52,9 @@ public class ManualFormatTest
         System.out.println("Start tests....");
         
         // start with plain old JSON
-        final FiveMinuteUser input = new FiveMinuteUser("Billy-Bob", "Smith", true,
-                Gender.MALE, new byte[] { 1, 2, 3, 4, 5 });
+        final FiveMinuteUser.Name name = new FiveMinuteUser.Name("Billy-Bob", "Smith");
+        final FiveMinuteUser input = new FiveMinuteUser(name.getFirst(), name.getLast(),
+                true, Gender.MALE, new byte[] { 1, 2, 3, 4, 5 });
 
         // Text formats, non-schema:
 
@@ -67,12 +69,10 @@ public class ManualFormatTest
         testSimpleFormat(input, new IonObjectMapper());
 
         // Text formats, schema:
-        /*
-        {
+        { // bit special for CSV, as we need flat content 
             final CsvMapper mapper = new CsvMapper();
-            testSchemaFormat(input, mapper, mapper.schemaFor(input.getClass()));
+            testSchemaFormat(name, mapper, mapper.schemaFor(name.getClass()));
         }
-        */
 
         // Binary formats, schema:
         {
