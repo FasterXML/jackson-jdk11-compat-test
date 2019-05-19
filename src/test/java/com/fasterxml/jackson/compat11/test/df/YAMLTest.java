@@ -1,10 +1,9 @@
-package com.fasterxml.jackson.test.df;
+package com.fasterxml.jackson.compat11.test.df;
 
 import java.util.*;
 
+import com.fasterxml.jackson.compat11.test.BaseTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.cbor.CBORFactory;
-import com.fasterxml.jackson.test.BaseTest;
 
 public class YAMLTest extends BaseTest
 {
@@ -12,7 +11,7 @@ public class YAMLTest extends BaseTest
     {
 
         /*
-        ObjectMapper mapper = newMapper(new CBORFactory());
+        ObjectMapper mapper = new YAMLMapper()'
         byte[] data = mapper.writeValueAsBytes(new HashMap<String,String>() { });
 
         Map<?,?> output = mapper.readValue(data, Map.class);

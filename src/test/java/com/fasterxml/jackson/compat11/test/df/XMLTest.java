@@ -1,8 +1,9 @@
-package com.fasterxml.jackson.test.df;
+package com.fasterxml.jackson.compat11.test.df;
 
+import com.fasterxml.jackson.compat11.test.BaseTest;
+import com.fasterxml.jackson.compat11.test.FiveMinuteUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import com.fasterxml.jackson.test.BaseTest;
 
 public class XMLTest extends BaseTest
 {

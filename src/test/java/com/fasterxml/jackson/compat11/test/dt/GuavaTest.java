@@ -1,10 +1,10 @@
-package com.fasterxml.jackson.test.dt;
+package com.fasterxml.jackson.compat11.test.dt;
 
 import java.util.Iterator;
 
+import com.fasterxml.jackson.compat11.test.BaseTest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.test.BaseTest;
 import com.google.common.collect.ImmutableSortedSet;
 
 public class GuavaTest extends BaseTest

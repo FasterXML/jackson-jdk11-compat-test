@@ -1,4 +1,4 @@
-package com.fasterxml.jackson.test;
+package com.fasterxml.jackson.compat11.test;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,15 +6,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class SimpleReadWriteTest extends BaseTest
 {
-    static class Point {
+    public static class Point {
         public int x;
         int y;
+
+        public Point() { }
 
         public void setY(int y0) { y = y0; }
         public int getY() { return y; }
     }
 
-    static class NamedPoint {
+    public static class NamedPoint {
         final String name;
 
         public Point p;

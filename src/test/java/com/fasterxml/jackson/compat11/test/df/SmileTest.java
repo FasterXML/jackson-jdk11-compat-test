@@ -1,10 +1,10 @@
-package com.fasterxml.jackson.test.df;
+package com.fasterxml.jackson.compat11.test.df;
 
 import java.util.*;
 
+import com.fasterxml.jackson.compat11.test.BaseTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.smile.SmileFactory;
-import com.fasterxml.jackson.test.BaseTest;
 
 public class SmileTest extends BaseTest
 {

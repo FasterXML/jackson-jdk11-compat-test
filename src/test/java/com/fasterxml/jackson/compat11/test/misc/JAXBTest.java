@@ -1,12 +1,13 @@
-package com.fasterxml.jackson.test.misc;
+package com.fasterxml.jackson.compat11.test.misc;
 
 import javax.xml.bind.annotation.XmlElement;
 
+import com.fasterxml.jackson.compat11.test.BaseTest;
+import com.fasterxml.jackson.compat11.test.FiveMinuteUser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
-import com.fasterxml.jackson.test.BaseTest;
 
 public class JAXBTest extends BaseTest
 {

@@ -1,8 +1,8 @@
-package com.fasterxml.jackson.test.misc;
+package com.fasterxml.jackson.compat11.test.misc;
 
+import com.fasterxml.jackson.compat11.test.BaseTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.module.mrbean.MrBeanModule;
-import com.fasterxml.jackson.test.BaseTest;
 
 public class MrBeanTest extends BaseTest
 {

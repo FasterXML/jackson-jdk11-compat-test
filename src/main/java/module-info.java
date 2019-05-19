@@ -17,4 +17,7 @@ module jackson.compat11 {
    // and then some base modules as well
     requires java.xml.bind;
     requires com.fasterxml.jackson.module.jaxb;
+
+    // and finally open up types for tests
+    opens com.fasterxml.jackson.compat11;
 }

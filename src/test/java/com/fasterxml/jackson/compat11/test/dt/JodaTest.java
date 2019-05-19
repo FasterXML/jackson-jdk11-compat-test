@@ -1,16 +1,16 @@
-package com.fasterxml.jackson.test.dt;
+package com.fasterxml.jackson.compat11.test.dt;
 
 import org.joda.time.DateTime;
 
+import com.fasterxml.jackson.compat11.test.BaseTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.test.BaseTest;
 
 /**
  * Simple tests to see that Joda module works too.
  */
 public class JodaTest extends BaseTest
 {
-    static class TimeWrapper {
+    public static class TimeWrapper {
         public DateTime time;
     }
     
