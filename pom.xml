@@ -24,8 +24,6 @@
     <javac.src.version>11</javac.src.version>
     <javac.target.version>11</javac.target.version>
 
-    <version.plugin.surefire>2.22.2</version.plugin.surefire>
-
     <osgi.export>com.fasterxml.jackson.compat11.*;version=${project.version}</osgi.export>
     <osgi.mainClass>com.fasterxml.jackson.compat11.ManualFormatTest</osgi.mainClass>
   </properties>
@@ -83,12 +81,10 @@
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-xml</artifactId>
     </dependency>
-<!--   
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-yaml</artifactId>
     </dependency>
-    -->
 
     <!-- 23-Feb-2016, tatu: Looks like we better use Woodstox as Stax impl, too -->
 <!--

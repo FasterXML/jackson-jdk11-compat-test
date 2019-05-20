@@ -24,6 +24,8 @@ module jackson.compat11 {
     requires com.fasterxml.jackson.datatype.guava;
 
     // and finally open up types for tests
-    //    export com.fasterxml.jackson.compat11;
-    // opens com.fasterxml.jackson.compat11;
+    opens com.fasterxml.jackson.compat11.test;
+    opens com.fasterxml.jackson.compat11.test.df;
+    opens com.fasterxml.jackson.compat11.test.dt;
+    opens com.fasterxml.jackson.compat11.test.misc;
 }
