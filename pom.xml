@@ -25,7 +25,7 @@
     <javac.target.version>11</javac.target.version>
 
     <osgi.export>com.fasterxml.jackson.compat11.*;version=${project.version}</osgi.export>
-    <osgi.mainClass>com.fasterxml.jackson.compat11.ManualFormatTest</osgi.mainClass>
+    <osgi.mainClass>com.fasterxml.jackson.compat11.AllManualTests</osgi.mainClass>
   </properties>
 
   <dependencies>

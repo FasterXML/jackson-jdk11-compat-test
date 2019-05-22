@@ -26,6 +26,6 @@ module jackson.compat11 {
     // and finally open up types for tests
     opens com.fasterxml.jackson.compat11.test;
     opens com.fasterxml.jackson.compat11.test.df;
-    opens com.fasterxml.jackson.compat11.test.dt;
+     opens com.fasterxml.jackson.compat11.test.dt;
     opens com.fasterxml.jackson.compat11.test.misc;
 }
