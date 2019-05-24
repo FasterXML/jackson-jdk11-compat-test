@@ -26,6 +26,8 @@
 
     <osgi.export>com.fasterxml.jackson.compat11.*;version=${project.version}</osgi.export>
     <osgi.mainClass>com.fasterxml.jackson.compat11.AllManualTests</osgi.mainClass>
+
+    <version.plugin.surefire>3.0.0-M3</version.plugin.surefire>
   </properties>
 
   <dependencies>
