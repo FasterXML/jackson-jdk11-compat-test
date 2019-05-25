@@ -38,19 +38,21 @@ public class ManualFormatTest
     static <T> void testFormat(T input,
             ObjectReader r, ObjectWriter w) throws Exception
     {
-        System.out.println("Testing: format '"+r.getFactory().getFormatName()+"'");
+        System.out.print("  Testing: format '"+r.getFactory().getFormatName()+"'... ");
 
         byte[] ser = w.writeValueAsBytes(input);
+        System.out.printf("%d bytes written, ", ser.length);
         T result = r.readValue(ser);
-
+        System.out.println("and read ok as well");
+        
         if (!input.equals(result)) {
             throw new Error("Mismatch for reader of type "+r.getFactory().getFormatName());
         }
     }
-    
+
     public static void main(String[] args) throws Exception
     {
-        System.out.println("Start tests....");
+        System.out.println("Format tests: start");
         
         // start with plain old JSON
         final FiveMinuteUser.Name name = new FiveMinuteUser.Name("Billy-Bob", "Smith");
@@ -70,7 +72,7 @@ public class ManualFormatTest
         testSimpleFormat(input, new IonObjectMapper());
 
         // Text formats, schema:
-        { // bit special for CSV, as we need flat content 
+        { // bit special for CSV, as we need flat content -- only serialize `name` value
             final CsvMapper mapper = new CsvMapper();
             testSchemaFormat(name, mapper, mapper.schemaFor(name.getClass()));
         }
@@ -85,7 +87,7 @@ public class ManualFormatTest
             testSchemaFormat(input, mapper, mapper.generateSchemaFor(input.getClass()));
         }
  
-        System.out.println("Tests complete!");
+        System.out.println("Format tests: COMPLETE");
     }
     
 }

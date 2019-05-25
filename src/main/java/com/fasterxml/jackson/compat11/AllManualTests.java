@@ -5,10 +5,16 @@ public class AllManualTests
     public static void main(String[] args) throws Exception
     {
         System.out.println("Start All tests....");
-        System.out.println(" calling Format tests:");
+
+        // formats
         ManualFormatTest.main(args);
-//        System.out.println(" calling Datatype tests:");
-        System.out.println(" calling Other Module tests:");
+
+        // datatypes
+        ManualDatatypesTest.main(args);
+
+        // other modules
+        ManualJAXBTest.main(args);
+        ManualMrBeanTest.main(args);
         
         System.out.println("... All tests complete!");
     }

@@ -15,11 +15,13 @@ public class ManualJAXBTest
     
     public static void main(String[] args) throws Exception
     {
+        System.out.print("JAXB Test:");
         final ObjectMapper mapper = JsonMapper.builder()
                 .addModule(new JaxbAnnotationModule())
                 .build();
         testBasic(mapper);
         testWithJAXBAnnotations(mapper);
+        System.out.println(" COMPLETE");
     }
 
     static void testBasic(ObjectMapper mapper) throws Exception
@@ -34,9 +36,10 @@ public class ManualJAXBTest
         Annotated input = new Annotated();
         input._foo = 42;
         String json = mapper.writeValueAsString(input);
-        /*Annotated out =*/ mapper.readValue(json, Annotated.class);
+        Annotated out = mapper.readValue(json, Annotated.class);
 
-        // also verify name was used
-        /*JsonNode root =*/ mapper.readTree(json);
+        if (out._foo != 42) {
+            throw new Error("Mismatch on reading back)");
+        }
     }
 }
