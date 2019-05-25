@@ -1,4 +1,4 @@
-module jackson.compat11 {
+module jackson.compat11test {
     // we get annotations, streaming, too, via databind:
     requires com.fasterxml.jackson.annotation;
     requires com.fasterxml.jackson.databind; 

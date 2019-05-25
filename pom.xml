@@ -125,4 +125,62 @@
     </dependency>
 
   </dependencies>
+
+  <!-- Alas, need to include snapshot reference since otherwise can not find
+       snapshot of parent... -->
+  <repositories>
+    <repository>
+      <id>sonatype-nexus-snapshots</id>
+      <name>Sonatype Nexus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases><enabled>false</enabled></releases>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
+
+  <build>
+    <plugins>
+<plugin>
+    <groupId>org.moditect</groupId>
+    <artifactId>moditect-maven-plugin</artifactId>
+    <version>1.0.0.Beta2</version>
+    <executions>
+        <execution>
+            <id>create-runtime-image</id>
+            <phase>package</phase>
+            <goals>
+                <goal>create-runtime-image</goal>
+            </goals>
+            <configuration>
+            <!--  
+                <modulePath>
+                    <path>${project.build.directory}/modules</path>
+                </modulePath>
+             -->
+                <modules>
+                    <module>jackson.compat11test</module>
+                </modules>
+                <!-- 
+                <excludedResources>
+                    <pattern>glob:/com.example/**</pattern>
+                </excludedResources>
+             -->
+             <!-- 
+                <baseJdk>version=11,vendor=openjdk,platform=macos</baseJdk>
+                -->
+                <!--  
+                <launcher>
+                    <name>JDK11Test</name>
+                    <module>jackson.compat11test</module>
+                </launcher>
+                -->
+                <outputDirectory>
+                    ${project.build.directory}/jlink-image
+                </outputDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+    </plugins>
+  </build>
 </project>
