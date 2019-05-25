@@ -16,6 +16,7 @@ module jackson.compat11test {
 
    // and then some base modules as well
     requires java.xml.bind;
+    requires com.fasterxml.jackson.module.afterburner;
     requires com.fasterxml.jackson.module.jaxb;
     requires com.fasterxml.jackson.module.mrbean;
 
