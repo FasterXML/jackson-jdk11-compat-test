@@ -1,186 +1,303 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion> 
-  <parent>
-    <groupId>com.fasterxml.jackson</groupId>
-    <artifactId>jackson-bom</artifactId>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.fasterxml.jackson</groupId>
+        <artifactId>jackson-bom</artifactId>
+        <version>2.10.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.fasterxml.jackson.util</groupId>
+    <artifactId>jackson-jdk11-compat-test</artifactId>
+    <name>Jackson-JDK11-compat-test</name>
     <version>2.10.0-SNAPSHOT</version>
-  </parent>
-  <groupId>com.fasterxml.jackson.util</groupId>
-  <artifactId>jackson-jdk11-compat-test</artifactId>
-  <name>Jackson-JDK11-compat-test</name>
-  <version>2.10.0-SNAPSHOT</version>
-  <packaging>bundle</packaging>
-  <description>Test suite for verifying Jackson components' Java Module info compatibility
-</description>
-  <url>http://github.com/FasterXML/jackson-jdk11-compat-test</url>    
-  <scm>
-    <connection>scm:git:git@github.com:FasterXML/jackson-jdk11-compat-test.git</connection>
-    <developerConnection>scm:git:git@github.com:FasterXML/jackson-jdk11-compat-test.git</developerConnection>
-    <url>http://github.com/FasterXML/jackson-jdk11-compat-test</url>    
-    <tag>HEAD</tag>
-  </scm>
-  <properties>
-    <javac.src.version>11</javac.src.version>
-    <javac.target.version>11</javac.target.version>
+    <!-- @GedMarc 20190529 - JLink multi module for compatibility building- -->
+    <!-- Moditect is to build foward-proof jdk8 jars-->
+    <packaging>pom</packaging>
 
-    <osgi.export>com.fasterxml.jackson.compat11.*;version=${project.version}</osgi.export>
-    <osgi.mainClass>com.fasterxml.jackson.compat11.AllManualTests</osgi.mainClass>
 
-    <version.plugin.surefire>3.0.0-M3</version.plugin.surefire>
-  </properties>
+    <description>Test suite for verifying Jackson components' Java Module info compatibility
+    </description>
+    <url>http://github.com/FasterXML/jackson-jdk11-compat-test</url>
+    <scm>
+        <connection>scm:git:git@github.com:FasterXML/jackson-jdk11-compat-test.git</connection>
+        <developerConnection>scm:git:git@github.com:FasterXML/jackson-jdk11-compat-test.git</developerConnection>
+        <url>http://github.com/FasterXML/jackson-jdk11-compat-test</url>
+        <tag>HEAD</tag>
+    </scm>
+    <properties>
+        <javac.src.version>11</javac.src.version>
+        <javac.target.version>11</javac.target.version>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
+        <osgi.export>com.fasterxml.jackson.compat11.*;version=${project.version}</osgi.export>
+        <osgi.mainClass>com.fasterxml.jackson.compat11.AllManualTests</osgi.mainClass>
 
-    <!-- JAXB sort of ubiquitous -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.module</groupId>
-      <artifactId>jackson-module-jaxb-annotations</artifactId>
-    </dependency>
+        <version.plugin.surefire>3.0.0-M3</version.plugin.surefire>
+        <enforcer.skip>true</enforcer.skip>
+    </properties>
 
-    <!-- first, try to ensure dataformats work -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-avro</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-cbor</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-csv</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-ion</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-properties</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-protobuf</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-smile</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-xml</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.dataformat</groupId>
-      <artifactId>jackson-dataformat-yaml</artifactId>
-    </dependency>
+    <modules>
+        <module>JLink</module>
+    </modules>
 
-    <!-- 23-Feb-2016, tatu: Looks like we better use Woodstox as Stax impl, too -->
-<!--
-    <dependency>
-      <groupId>com.fasterxml.woodstox</groupId>
-      <artifactId>woodstox-core</artifactId>
-      <version>5.0.3</version>
-      <scope>test</scope>
-    </dependency>
--->
+    <dependencies>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
 
-    <!-- Also, some modules... -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.module</groupId>
-      <artifactId>jackson-module-mrbean</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.module</groupId>
-      <artifactId>jackson-module-afterburner</artifactId>
-    </dependency>
+        <!-- JAXB sort of ubiquitous -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
+        </dependency>
 
-    <!-- Let's also check some commonly used datatype libs -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-joda</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-guava</artifactId>
-    </dependency>
+        <!-- first, try to ensure dataformats work -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-avro</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-cbor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-csv</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-ion</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-properties</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-protobuf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-smile</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
 
-    <!-- and good old junit too -->
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
+        <!-- 23-Feb-2016, tatu: Looks like we better use Woodstox as Stax impl, too -->
+        <!--
+            <dependency>
+              <groupId>com.fasterxml.woodstox</groupId>
+              <artifactId>woodstox-core</artifactId>
+              <version>5.0.3</version>
+              <scope>test</scope>
+            </dependency>
+        -->
 
-  </dependencies>
+        <!-- Also, some modules... -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-mrbean</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-afterburner</artifactId>
+        </dependency>
+        <!-- Todo Migrate Guice Module (Look here for a working one - https://github.com/GedMarc/jackson-guice )-->
+      <!--  <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-guice</artifactId>
+            <version>2.9.5</version>
+        </dependency>-->
 
-  <!-- Alas, need to include snapshot reference since otherwise can not find
-       snapshot of parent... -->
-  <repositories>
-    <repository>
-      <id>sonatype-nexus-snapshots</id>
-      <name>Sonatype Nexus Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-      <releases><enabled>false</enabled></releases>
-      <snapshots><enabled>true</enabled></snapshots>
-    </repository>
-  </repositories>
+        <!-- Let's also check some commonly used datatype libs -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-guava</artifactId>
+        </dependency>
 
-  <build>
-    <plugins>
-<plugin>
-    <groupId>org.moditect</groupId>
-    <artifactId>moditect-maven-plugin</artifactId>
-    <version>1.0.0.Beta2</version>
-    <executions>
-        <execution>
-            <id>create-runtime-image</id>
-            <phase>package</phase>
-            <goals>
-                <goal>create-runtime-image</goal>
-            </goals>
-            <configuration>
-            <!--  
-                <modulePath>
-                    <path>${project.build.directory}/modules</path>
-                </modulePath>
-             -->
-                <modules>
-                    <module>jackson.compat11test</module>
-                </modules>
-                <!-- 
-                <excludedResources>
-                    <pattern>glob:/com.example/**</pattern>
-                </excludedResources>
-             -->
-             <!-- 
-                <baseJdk>version=11,vendor=openjdk,platform=macos</baseJdk>
-                -->
-                <!--  
-                <launcher>
-                    <name>JDK11Test</name>
-                    <module>jackson.compat11test</module>
-                </launcher>
-                -->
-                <outputDirectory>
-                    ${project.build.directory}/jlink-image
-                </outputDirectory>
-            </configuration>
-        </execution>
-    </executions>
-</plugin>
-    </plugins>
-  </build>
+        <!-- and good old junit too -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <!-- Alas, need to include snapshot reference since otherwise can not find
+         snapshot of parent... -->
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <build>
+        <defaultGoal>package</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <annotationProcessorPath>
+                            <groupId>jakarta.xml.bind</groupId>
+                            <artifactId>jakarta.xml.bind-api</artifactId>
+                            <version>2.3.2</version>
+                        </annotationProcessorPath>
+                    </annotationProcessorPaths>
+                    <compilerArguments>
+                        <AaddGeneratedAnnotation>false</AaddGeneratedAnnotation>
+                        <Adebug>true</Adebug>
+                    </compilerArguments>
+                    <failOnError>true</failOnError>
+                </configuration>
+
+                <dependencies>
+                    <dependency>
+                        <groupId>org.ow2.asm</groupId>
+                        <artifactId>asm</artifactId>
+                        <version>7.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <!--<argLine>&#45;&#45;add-opens java.base/java.lang=com.google.guice,javassist ${surefireArgLine}</argLine>-->
+                    <!-- Sets the VM argument line used when unit tests are run. -->
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                    <offlineLinks>
+                        <offlineLink>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <url>https://docs.oracle.com/javase/${maven.compiler.release}/docs/api/</url>
+                            <location>${project.basedir}</location>
+                        </offlineLink>
+                    </offlineLinks>
+                    <failOnError>true</failOnError>
+                    <!--<javadocExecutable>/opt/jdk12/bin/javadoc</javadocExecutable>-->
+                    <additionalOptions>
+                        <additionalOption>-Xdoclint:none</additionalOption>
+                    </additionalOptions>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadoc</id>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>jlink</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <modules>
+                <module>JLink</module>
+            </modules>
+            <build>
+                <plugins>
+                    <!-- JLINK -->
+                    <plugin>
+                        <artifactId>maven-jlink-plugin</artifactId>
+                        <version>3.0.0-alpha-2-SNAPSHOT</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <noHeaderFiles>true</noHeaderFiles>
+                            <noManPages>true</noManPages>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>org.ow2.asm</groupId>
+                                <artifactId>asm</artifactId>
+                                <version>7.1</version> <!-- Use newer version of ASM -->
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jmod-plugin</artifactId>
+                        <version>3.0.0-alpha-1</version>
+                        <extensions>true</extensions>
+                    </plugin>
+
+                    <!-- Config your tool chain appropriately !!!-->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-toolchains-plugin</artifactId>
+                        <version>1.1</version>
+                        <executions>
+                            <execution>
+                                <?m2e ignore ?>
+                                <goals>
+                                    <goal>toolchain</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <toolchains>
+                                <jdk>
+                                    <version>1.12</version>
+                                    <vendor>oracle</vendor>
+                                </jdk>
+                            </toolchains>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

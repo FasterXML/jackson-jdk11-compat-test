@@ -19,6 +19,9 @@ module jackson.compat11test {
     requires com.fasterxml.jackson.module.afterburner;
     requires com.fasterxml.jackson.module.jaxb;
     requires com.fasterxml.jackson.module.mrbean;
+    //TODO use named guice from com.jwebmp.jpms.guice - https://mvnrepository.com/artifact/com.jwebmp.inject/guice/0.67.0.12
+	//Make provided so a different implementation can be used if need be
+//    requires com.fasterxml.jackson.module.guice;
 
     // and datatypes
     requires com.fasterxml.jackson.datatype.joda;
