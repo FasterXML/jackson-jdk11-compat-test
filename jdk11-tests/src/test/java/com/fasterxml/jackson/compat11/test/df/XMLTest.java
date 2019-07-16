@@ -1,7 +1,7 @@
 package com.fasterxml.jackson.compat11.test.df;
 
 import com.fasterxml.jackson.compat11.test.BaseTest;
-import com.fasterxml.jackson.compat11.test.FiveMinuteUser;
+import com.fasterxml.jackson.compat11.testutil.FiveMinuteUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 

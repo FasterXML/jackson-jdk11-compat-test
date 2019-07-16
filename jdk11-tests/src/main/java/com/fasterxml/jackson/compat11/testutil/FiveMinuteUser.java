@@ -1,4 +1,4 @@
-package com.fasterxml.jackson.compat11.test;
+package com.fasterxml.jackson.compat11.testutil;
 
 /**
  * Sample class from Jackson tutorial ("JacksonInFiveMinutes")
