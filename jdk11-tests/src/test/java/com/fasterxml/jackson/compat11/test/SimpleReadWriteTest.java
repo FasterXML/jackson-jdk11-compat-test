@@ -55,4 +55,6 @@ public class SimpleReadWriteTest extends BaseTest
         assertEquals(3, npStr.p.x);
         assertEquals(3, npB.p.x);
     }
+
+//    public void testElse() { throw new Error(); }
 }

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.dataformat.avro.AvroMapper;
 import com.fasterxml.jackson.dataformat.cbor.databind.CBORMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.ion.IonObjectMapper;
+//import com.fasterxml.jackson.dataformat.ion.IonObjectMapper;
 import com.fasterxml.jackson.dataformat.javaprop.JavaPropsMapper;
 import com.fasterxml.jackson.dataformat.protobuf.ProtobufMapper;
 import com.fasterxml.jackson.dataformat.smile.databind.SmileMapper;
@@ -69,7 +69,7 @@ public class ManualFormatTest
         // Binary formats, non-schema:
         testSimpleFormat(input, new CBORMapper());
         testSimpleFormat(input, new SmileMapper());
-        testSimpleFormat(input, new IonObjectMapper());
+//        testSimpleFormat(input, new IonObjectMapper());
 
         // Text formats, schema:
         { // bit special for CSV, as we need flat content -- only serialize `name` value

@@ -1,13 +1,14 @@
 module jackson.compat11test {
     // we get annotations, streaming, too, via databind:
-    requires com.fasterxml.jackson.annotation;
-    requires com.fasterxml.jackson.databind; 
+    requires transitive com.fasterxml.jackson.annotation;
+    requires transitive com.fasterxml.jackson.core; 
+    requires transitive com.fasterxml.jackson.databind; 
 
     // but formats require explicit inclusion
     requires com.fasterxml.jackson.dataformat.avro;
     requires com.fasterxml.jackson.dataformat.cbor;
     requires com.fasterxml.jackson.dataformat.csv;
-    requires com.fasterxml.jackson.dataformat.ion;
+    //    requires com.fasterxml.jackson.dataformat.ion;
     requires com.fasterxml.jackson.dataformat.javaprop;
     requires com.fasterxml.jackson.dataformat.protobuf;
     requires com.fasterxml.jackson.dataformat.smile;
