@@ -1,9 +1,8 @@
 package com.fasterxml.jackson.compat11.test.misc;
 
-import javax.xml.bind.annotation.XmlElement;
-
 import com.fasterxml.jackson.compat11.test.BaseTest;
 import com.fasterxml.jackson.compat11.testutil.FiveMinuteUser;
+import com.fasterxml.jackson.compat11.testutil.JaxbFooWrapper;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -11,11 +10,6 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
 
 public class JAXBTest extends BaseTest
 {
-    static class Annotated {
-        @XmlElement(name = "value")
-        public int _foo = 3;
-    }
-
     final ObjectMapper MAPPER = JsonMapper.builder()
             .addModule(new JaxbAnnotationModule())
             .build();
@@ -30,10 +24,10 @@ public class JAXBTest extends BaseTest
 
     public void testWithJAXBAnnotations() throws Exception
     {
-        Annotated input = new Annotated();
+        JaxbFooWrapper input = new JaxbFooWrapper();
         input._foo = 42;
         String json = MAPPER.writeValueAsString(input);
-        Annotated out = MAPPER.readValue(json, Annotated.class);
+        JaxbFooWrapper out = MAPPER.readValue(json, JaxbFooWrapper.class);
         assertNotNull(out);
         assertEquals(42, out._foo);
 
