@@ -28,6 +28,7 @@ module jackson.compat11test {
     requires com.fasterxml.jackson.datatype.joda;
     requires com.fasterxml.jackson.datatype.guava;
     requires transitive joda.time;
+    requires com.ctc.wstx;
 
     // and finally open up types for tests
     exports com.fasterxml.jackson.compat11.testutil;
