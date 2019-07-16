@@ -252,7 +252,7 @@
                     <!-- JLINK -->
                     <plugin>
                         <artifactId>maven-jlink-plugin</artifactId>
-                        <version>3.0.0-alpha-2-SNAPSHOT</version>
+                        <version>3.0.0-alpha-1</version>
                         <extensions>true</extensions>
                         <configuration>
                             <noHeaderFiles>true</noHeaderFiles>
@@ -289,8 +289,8 @@
                         </executions>
                         <configuration>
                             <toolchains>
-                                <jdk>
-                                    <version>1.12</version>
+                                <jdk> <!-- JDK11 is the long-term version with modules -->
+                                    <version>1.11</version>
                                     <vendor>oracle</vendor>
                                 </jdk>
                             </toolchains>
