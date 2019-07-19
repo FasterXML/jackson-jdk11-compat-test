@@ -5,7 +5,7 @@ module jackson.compat11test {
     requires transitive com.fasterxml.jackson.databind; 
 
     // but formats require explicit inclusion
-    requires static com.fasterxml.jackson.dataformat.avro;
+    requires com.fasterxml.jackson.dataformat.avro;
     requires com.fasterxml.jackson.dataformat.cbor;
     requires com.fasterxml.jackson.dataformat.csv;
     //    requires com.fasterxml.jackson.dataformat.ion;
@@ -29,7 +29,7 @@ module jackson.compat11test {
     requires com.fasterxml.jackson.datatype.guava;
     requires static joda.time;
     requires com.ctc.wstx;
-    requires guava;
+    requires static guava;
 
     // and finally open up types for tests
     exports com.fasterxml.jackson.compat11.testutil;
