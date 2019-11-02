@@ -34,6 +34,8 @@
 
         <version.plugin.surefire>3.0.0-M3</version.plugin.surefire>
         <enforcer.skip>true</enforcer.skip>
+
+        <guicedee.version>0.70.0.1-rc2</guicedee.version>
     </properties>
 
     <modules>
@@ -59,6 +61,16 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jakarta.xml.bind-api</artifactId>
+                    <groupId>jakarta.xml.bind</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jakarta.activation-api</artifactId>
+                    <groupId>jakarta.activation</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- first, try to ensure dataformats work -->
@@ -75,73 +87,97 @@
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-csv</artifactId>
         </dependency>
-<!--
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-ion</artifactId>
-        </dependency>
--->
+
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-properties</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-protobuf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-smile</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-yaml</artifactId>
-        </dependency>
+        <!-- Modules not yet JLink compatible ... -->
 
-        <!-- 23-Feb-2016, tatu: Looks like we better use Woodstox as Stax impl, too -->
-        <dependency>
-          <groupId>com.fasterxml.woodstox</groupId>
-          <artifactId>woodstox-core</artifactId>
-          <version>6.0.0-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Also, some modules... -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-mrbean</artifactId>
+            <optional>true</optional>
         </dependency>
-        <dependency>
+      <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-afterburner</artifactId>
+          <optional>true</optional>
         </dependency>
-        <!-- Todo Migrate Guice Module (Look here for a working one - https://github.com/GedMarc/jackson-guice )-->
-      <!--  <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-guice</artifactId>
-            <version>2.9.5</version>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-smile</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+  <!--      <dependency>
+          <groupId>com.fasterxml.woodstox</groupId>
+          <artifactId>woodstox-core</artifactId>
+          <version>6.0.0-SNAPSHOT</version>
         </dependency>-->
 
-        <!-- Let's also check some commonly used datatype libs -->
         <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-protobuf</artifactId>
+            <optional>true</optional>
+         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <optional>true</optional>
+        </dependency>
+          <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-joda</artifactId>
+              <optional>true</optional>
         </dependency>
-        <dependency>
+
+        <!--<dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-guava</artifactId>
+            <optional>true</optional>
+        </dependency>-->
+
+        <!-- Use JDK 11 Compatible Libraries-->
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>${guicedee.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>${guicedee.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guicedee.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>guice</artifactId>
+            <version>${guicedee.version}</version>
         </dependency>
 
         <!-- and good old junit too -->
+
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <!-- Required for testing, but not for testing the jlink build-->
-            <optional>true</optional>
-            <scope>provided</scope>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.5.2</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -180,9 +216,9 @@
                 <configuration>
                     <annotationProcessorPaths>
                         <annotationProcessorPath>
-                            <groupId>jakarta.xml.bind</groupId>
+                            <groupId>com.guicedee.services</groupId>
                             <artifactId>jakarta.xml.bind-api</artifactId>
-                            <version>2.3.2</version>
+                            <version>${guicedee.version}</version>
                         </annotationProcessorPath>
                     </annotationProcessorPaths>
                     <compilerArguments>
@@ -196,7 +232,7 @@
                     <dependency>
                         <groupId>org.ow2.asm</groupId>
                         <artifactId>asm</artifactId>
-                        <version>7.1</version>
+                        <version>7.2</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -219,6 +255,8 @@
                 <configuration>
                     <!--<argLine>&#45;&#45;add-opens java.base/java.lang=com.google.guice,javassist ${surefireArgLine}</argLine>-->
                     <!-- Sets the VM argument line used when unit tests are run. -->
+
+                    <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
 

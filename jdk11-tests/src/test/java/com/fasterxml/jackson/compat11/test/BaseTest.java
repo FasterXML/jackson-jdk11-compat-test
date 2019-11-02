@@ -3,13 +3,13 @@ package com.fasterxml.jackson.compat11.test;
 import java.io.*;
 import java.util.Arrays;
 
-import junit.framework.TestCase;
 
 import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public abstract class BaseTest
-    extends TestCase
 {
     /*
     /**********************************************************
@@ -264,8 +264,8 @@ public abstract class BaseTest
     }
 
     protected void assertValidLocation(JsonLocation location) {
-        assertNotNull("Should have non-null location", location);
-        assertTrue("Should have positive line number", location.getLineNr() > 0);
+        assertNotNull(location,"Should have non-null location");
+        assertTrue(location.getLineNr() > 0,"Should have positive line number" );
     }
 
     protected void verifyException(Throwable e, String... matches)
@@ -315,8 +315,9 @@ public abstract class BaseTest
 
     protected ObjectMapper newMapper(JsonFactory f) {
         return new ObjectMapper(f)
-            .registerModule(new com.fasterxml.jackson.datatype.joda.JodaModule())
-            .registerModule(new com.fasterxml.jackson.datatype.guava.GuavaModule())
+				//2019/07/03 Guava can get a module-info
+          /*  .registerModule(new com.fasterxml.jackson.datatype.joda.JodaModule())
+            .registerModule(new com.fasterxml.jackson.datatype.guava.GuavaModule())*/
         ;
     }
 

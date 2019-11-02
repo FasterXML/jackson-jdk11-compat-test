@@ -3,6 +3,8 @@ package com.fasterxml.jackson.compat11.test;
 import com.fasterxml.jackson.compat11.testutil.NamedPoint;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class SimpleReadWriteTest extends BaseTest
 {
     /*

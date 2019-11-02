@@ -7,13 +7,17 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.module.jaxb.JaxbAnnotationModule;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class JAXBTest extends BaseTest
 {
     final ObjectMapper MAPPER = JsonMapper.builder()
             .addModule(new JaxbAnnotationModule())
             .build();
-    
+
+	@Test
     public void testBasic() throws Exception
     {
         FiveMinuteUser input = new FiveMinuteUser();
@@ -21,7 +25,7 @@ public class JAXBTest extends BaseTest
         FiveMinuteUser out = MAPPER.readValue(json, FiveMinuteUser.class);
         assertNotNull(out);
     }
-
+    @Test
     public void testWithJAXBAnnotations() throws Exception
     {
         JaxbFooWrapper input = new JaxbFooWrapper();
