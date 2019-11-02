@@ -4,7 +4,7 @@ Simple test suite, aim of which is to guarantee that Jackson components declare 
 Java Module info (added in JDK 9) properly.
 
 ## JLink / JMod compatible 
-The JLink profile tests and confirms if the module path can be built by the Java Modular System, and be used in the newer packaging techniques such as JMod, JLink and JPackage.
+The JLink module tests and confirms if the module path can be built by the Java Modular System, and be used in the newer packaging techniques such as JMod, JLink and JPackage.
 
 ### Notes
 In order to compile the libraries from guicedee.com have been used
