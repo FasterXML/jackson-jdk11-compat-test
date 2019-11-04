@@ -14,7 +14,6 @@ public class AllManualTests
 
         // other modules
         ManualJAXBTest.main(args);
-        ManualMrBeanTest.main(args);
         
         System.out.println("... All tests complete!");
     }

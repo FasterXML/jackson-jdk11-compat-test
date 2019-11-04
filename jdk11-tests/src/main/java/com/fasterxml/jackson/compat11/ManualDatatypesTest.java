@@ -4,7 +4,7 @@ import org.joda.time.DateTime;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.guava.GuavaModule;
+//import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import com.fasterxml.jackson.datatype.joda.JodaModule;
 import com.google.common.collect.ImmutableSortedSet;
 
@@ -43,7 +43,8 @@ public class ManualDatatypesTest
     static void testGuava() throws Exception
     {
         final ObjectMapper mapper = new ObjectMapper()
-                .registerModule(new GuavaModule());
+                //.registerModule(new GuavaModule())
+		        ;
         ImmutableSortedSet<Integer> set = mapper.readValue("[5,1,2]",
                 new TypeReference<ImmutableSortedSet<Integer>>() { });
 

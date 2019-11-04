@@ -6,11 +6,16 @@ import com.fasterxml.jackson.compat11.test.BaseTest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableSortedSet;
+import org.junit.jupiter.api.Test;
+
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class GuavaTest extends BaseTest
 {
     final ObjectMapper MAPPER = newMapper();
-    
+	@Test
     public void testImmutableSortedSet() throws Exception
     {
         ImmutableSortedSet<Integer> set = MAPPER.readValue("[5,1,2]",
