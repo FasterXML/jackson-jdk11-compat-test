@@ -16,6 +16,13 @@
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-afterburner</artifactId>
         </dependency>
+
+        <!-- Apache CXF + Jersey JAX-RS Implementation-->
+        <dependency>
+            <groupId>com.guicedee.servlets</groupId>
+            <artifactId>guiced-rest-services</artifactId>
+            <version>${guicedee.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
