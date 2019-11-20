@@ -49,5 +49,9 @@ module jackson.compat11test {
 
 	// and finally open up types for tests
     exports com.fasterxml.jackson.compat11.testutil;
+
     opens com.fasterxml.jackson.compat11.testutil to com.fasterxml.jackson.databind;
+	//JAX-RS test with Guice.
+	//This looks like a default configuration for modules and jax-rs (for cdi it is jakarta.interceptor-cdi instead of guice e.g.)
+	opens com.fasterxml.jackson.compat11.jaxrs to com.google.guice,org.apache.cxf,com.fasterxml.jackson.databind;
 }

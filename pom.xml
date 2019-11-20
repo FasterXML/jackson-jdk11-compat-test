@@ -36,6 +36,8 @@
         <enforcer.skip>true</enforcer.skip>
 
         <guicedee.version>0.70.0.6</guicedee.version>
+
+        <surefireArgLine></surefireArgLine>
     </properties>
 
     <modules>
@@ -272,11 +274,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
+                <version>${version.plugin.surefire}</version>
                 <configuration>
-                    <!--<argLine>&#45;&#45;add-opens java.base/java.lang=com.google.guice,javassist ${surefireArgLine}</argLine>-->
-                    <!-- Sets the VM argument line used when unit tests are run. -->
-
+                    <argLine>--add-opens java.base/java.lang=com.google.guice,javassist ${surefireArgLine}</argLine>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
@@ -333,7 +333,7 @@
                             <dependency>
                                 <groupId>org.ow2.asm</groupId>
                                 <artifactId>asm</artifactId>
-                                <version>7.1</version> <!-- Use newer version of ASM -->
+                                <version>7.2</version> <!-- 7.2 for JDK 14 -->
                             </dependency>
                         </dependencies>
                     </plugin>

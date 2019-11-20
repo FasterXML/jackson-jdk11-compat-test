@@ -316,8 +316,8 @@ public abstract class BaseTest
     protected ObjectMapper newMapper(JsonFactory f) {
         return new ObjectMapper(f)
 				//2019/07/03 Guava can get a module-info
-          /*  .registerModule(new com.fasterxml.jackson.datatype.joda.JodaModule())
-            .registerModule(new com.fasterxml.jackson.datatype.guava.GuavaModule())*/
+            .registerModule(new com.fasterxml.jackson.datatype.joda.JodaModule())
+            .registerModule(new com.fasterxml.jackson.datatype.guava.GuavaModule())
         ;
     }
 
