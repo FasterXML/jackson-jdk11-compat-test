@@ -9,11 +9,6 @@ The JLink module tests and confirms if the module path can be built by the Java 
 ### Notes
 In order to compile the libraries from guicedee.com have been used
 
-## TODO in Jackson Modules
-* Guava
-  * requires static guava
-  * requires static com.google.common
-
 ## Not Compatible with JLink
 The below items require the base dependencies to be updated in order to compile into JLink artifacts
 * MrBean

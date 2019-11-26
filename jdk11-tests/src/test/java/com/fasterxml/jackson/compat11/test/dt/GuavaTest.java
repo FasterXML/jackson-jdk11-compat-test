@@ -18,7 +18,6 @@ public class GuavaTest extends BaseTest
 	@Test
     public void testImmutableSortedSet() throws Exception
     {
-	    //TODO how does this work
         ImmutableSortedSet<Integer> set = MAPPER.readValue("[5,1,2]",
                 new TypeReference<ImmutableSortedSet<Integer>>() { });
         assertEquals(3, set.size());
