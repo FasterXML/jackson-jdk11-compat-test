@@ -14,6 +14,21 @@ The below items require the base dependencies to be updated in order to compile 
 * MrBean
 * Joda
 
+## Usage, setup
+
+If you get an error like:
+
+```
+[INFO] --- maven-toolchains-plugin:1.1:toolchain (default) @ jackson-jdk11-compat-test ---
+[INFO] Required toolchain: jdk [ vendor='oracle' version='1.11' ]
+[ERROR] No toolchain found for type jdk
+[ERROR] Cannot find matching toolchain definitions for the following toolchain types:
+jdk [ vendor='oracle' version='1.11' ]
+```
+
+you will need to setup Maven Toolchain settings.
+See f.ex: https://stackoverflow.com/questions/40354942/maven-build-error-after-setting-toolchain-right
+
 ## Status
 
 [![Build Status](https://travis-ci.org/FasterXML/jackson-jdk11-compat-test.svg)](https://travis-ci.org/FasterXML/jackson-jdk11-compat-test)
