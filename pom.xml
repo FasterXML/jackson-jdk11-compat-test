@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.fasterxml.jackson</groupId>
         <artifactId>jackson-bom</artifactId>
-        <version>2.11.3</version>
+        <version>2.12.0-rc2-SNAPSHOT</version>
     </parent>
     <groupId>com.fasterxml.jackson.util</groupId>
     <artifactId>jackson-jdk11-compat-test</artifactId>
     <name>Jackson-JDK11-compat-test</name>
-    <version>2.11.0-SNAPSHOT</version>
+    <version>2.12.0-rc2-SNAPSHOT</version>
     <!-- @GedMarc 20190529 - JLink multi module for compatibility building- -->
     <!-- Moditect is to build foward-proof jdk8 jars-->
     <packaging>pom</packaging>
@@ -35,9 +35,26 @@
         <version.plugin.surefire>3.0.0-M3</version.plugin.surefire>
         <enforcer.skip>true</enforcer.skip>
 
-        <guicedee.version>0.70.0.6</guicedee.version>
-
         <surefireArgLine></surefireArgLine>
+
+        <!-- Jakarta Namespace -->
+        <jakarta.activation.version>2.0.0</jakarta.activation.version>
+        <jakarta.annotation.version>2.0.0</jakarta.annotation.version>
+        <jakarta.com.sun.activation.version>2.0.0</jakarta.com.sun.activation.version>
+
+        <jakarta.json.version>2.0.0</jakarta.json.version>
+        <jakarta.rs.api.version>3.0.0</jakarta.rs.api.version>
+        <jakarta.xml.ws.api.version>3.0.0</jakarta.xml.ws.api.version>
+        <jakarta.xml.soap.api.version>2.0.0</jakarta.xml.soap.api.version>
+
+        <jakarta.xml.jaxws.rt.version>3.0.0-M5</jakarta.xml.jaxws.rt.version>
+        <jakarta.xml.jaxws.api.version>2.3.1</jakarta.xml.jaxws.api.version>
+
+        <jakarta.xml.jaxb.api.version>3.0.0</jakarta.xml.jaxb.api.version>
+        <jakarta.inject.api.version>2.0.0</jakarta.inject.api.version>
+
+        <jakarta.servlet.version>5.0.0</jakarta.servlet.version>
+
     </properties>
 
     <modules>
@@ -45,15 +62,66 @@
         <module>JLink</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${jakarta.annotation.version}</version>
+                <optional>true</optional>
+            </dependency>
+
+            <!-- Jakarta Now Catching Up -->
+            <dependency>
+                <groupId>jakarta.activation</groupId>
+                <artifactId>jakarta.activation-api</artifactId>
+                <version>${jakarta.activation.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.ws.rs</groupId>
+                <artifactId>jakarta.ws.rs-api</artifactId>
+                <version>${jakarta.rs.api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>jakarta.xml.bind</groupId>
+                <artifactId>jakarta.xml.bind-api</artifactId>
+                <version>${jakarta.xml.jaxb.api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-runtime</artifactId>
+                <version>${jakarta.xml.jaxb.api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-core</artifactId>
+                <version>${jakarta.xml.jaxb.api.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.sun.xml.bind</groupId>
+                <artifactId>jaxb-impl</artifactId>
+                <version>${jakarta.xml.jaxb.api.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-annotations</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -63,16 +131,6 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jakarta.xml.bind-api</artifactId>
-                    <groupId>jakarta.xml.bind</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jakarta.activation-api</artifactId>
-                    <groupId>jakarta.activation</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <!-- first, try to ensure dataformats work -->
@@ -106,11 +164,7 @@
             <artifactId>jackson-module-mrbean</artifactId>
             <optional>true</optional>
         </dependency>
-      <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-afterburner</artifactId>
-          <optional>true</optional>
-        </dependency>
+
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-smile</artifactId>
@@ -143,56 +197,28 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jaxrs</artifactId>
             <exclusions>
                 <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>javax.ws.rs-api</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
 
-        <!-- Use JDK 11 Compatible Libraries-->
         <dependency>
-            <groupId>com.guicedee.services</groupId>
-            <artifactId>jakarta.annotation-api</artifactId>
-            <version>${guicedee.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.guicedee.services</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>${guicedee.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.guicedee.services</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guicedee.version}</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>com.guicedee.services</groupId>
-            <artifactId>guice</artifactId>
-            <version>${guicedee.version}</version>
-        </dependency>
-
-        <!-- Access the github build -->
-        <!-- Waiting on 2.10.1.1 for jaxrs and base module fix -->
-        <!-- TODO put back to jackson libraries after 2.10.1.1 -->
-        <dependency>
-            <groupId>com.guicedee.services</groupId>
-            <artifactId>jackson-jaxrs-json-provider</artifactId>
-            <version>${guicedee.version}</version>
-            <type>jar</type>
-        </dependency>
-
-        <dependency>
-            <groupId>com.guicedee.services</groupId>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-base</artifactId>
-            <version>${guicedee.version}</version>
-            <type>jar</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>javax.ws.rs-api</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- and good old junit too -->
@@ -227,6 +253,10 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>Jakarta</id>
+            <url>https://jakarta.oss.sonatype.org/content/groups/staging/</url>
+        </repository>
     </repositories>
 
     <build>
@@ -235,27 +265,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <annotationProcessorPath>
-                            <groupId>com.guicedee.services</groupId>
-                            <artifactId>jakarta.xml.bind-api</artifactId>
-                            <version>${guicedee.version}</version>
-                        </annotationProcessorPath>
-                    </annotationProcessorPaths>
-                    <compilerArguments>
-                        <AaddGeneratedAnnotation>false</AaddGeneratedAnnotation>
-                        <Adebug>true</Adebug>
-                    </compilerArguments>
-                    <failOnError>true</failOnError>
-                </configuration>
+                <version>3.8.1</version>
 
                 <dependencies>
                     <dependency>
                         <groupId>org.ow2.asm</groupId>
                         <artifactId>asm</artifactId>
-                        <version>7.2</version>
+                        <version>9.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -276,7 +292,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.plugin.surefire}</version>
                 <configuration>
-                    <argLine>--add-opens java.base/java.lang=com.google.guice,javassist ${surefireArgLine}</argLine>
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
@@ -333,7 +348,7 @@
                             <dependency>
                                 <groupId>org.ow2.asm</groupId>
                                 <artifactId>asm</artifactId>
-                                <version>7.2</version> <!-- 7.2 for JDK 14 -->
+                                <version>9.0</version> <!-- 7.2 for JDK 14 -->
                             </dependency>
                         </dependencies>
                     </plugin>
