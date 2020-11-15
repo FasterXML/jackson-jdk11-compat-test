@@ -26,6 +26,8 @@
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <classifier>jakarta</classifier>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>jakarta.activation</groupId>
@@ -111,6 +113,8 @@
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jaxrs</artifactId>
+            <classifier>jakarta</classifier>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.ws.rs</groupId>
@@ -122,6 +126,8 @@
         <dependency>
             <groupId>com.fasterxml.jackson.jaxrs</groupId>
             <artifactId>jackson-jaxrs-base</artifactId>
+            <classifier>jakarta</classifier>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>javax.ws.rs</groupId>
