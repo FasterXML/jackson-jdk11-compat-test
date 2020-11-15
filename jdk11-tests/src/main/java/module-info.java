@@ -20,14 +20,13 @@ module jackson.compat11test {
 	requires com.fasterxml.jackson.datatype.guava;
 	//requires com.fasterxml.jackson.dataformat.ion;
 	requires com.fasterxml.jackson.datatype.joda;
-	requires com.fasterxml.jackson.jaxrs.json;
+	requires com.fasterxml.jackson.datatype.jaxrs;
 
 	requires static joda.time;
 
 	requires com.fasterxml.jackson.module.afterburner;
-	requires com.google.common;
 
-	requires java.xml.bind;
+	requires jakarta.xml.bind;
    // and then some base modules as well
 
     requires com.fasterxml.jackson.module.jaxb;
@@ -35,17 +34,13 @@ module jackson.compat11test {
 
     requires com.ctc.wstx;
 
-    requires com.google.guice;
-
     //Todo Needs to go static guava, static com.google.common
 	//requires com.fasterxml.jackson.datatype.guava;
 	requires com.fasterxml.jackson.module.mrbean;
 	requires java.net.http;
 	requires java.logging;
-	requires com.guicedee.guicedservlets.rest;
-	requires com.guicedee.guicedservlets.undertow;
-	requires undertow.core;
-	requires java.ws.rs;
+	requires guava;
+	requires jakarta.ws.rs;
 
 	// and finally open up types for tests
     exports com.fasterxml.jackson.compat11.testutil;
