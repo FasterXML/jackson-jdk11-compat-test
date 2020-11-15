@@ -25,7 +25,7 @@ module jackson.compat11test {
 
     //requires compatible depedencies
 
-
+	requires jakarta.validation;
 
 	requires com.fasterxml.jackson.datatype.guava;
 	//requires com.fasterxml.jackson.dataformat.ion;
@@ -40,6 +40,8 @@ module jackson.compat11test {
    // and then some base modules as well
 
     requires com.fasterxml.jackson.module.jaxb;
+    //solve for org.apache.cxf.validation.BeanValidationProvider - Bean Validation provider can not be found, no validation will be performed
+    requires org.hibernate.validator;
 
     requires com.ctc.wstx;
 

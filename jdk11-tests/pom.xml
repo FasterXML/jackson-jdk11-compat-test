@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.fasterxml.jackson.util</groupId>
         <artifactId>jackson-jdk11-compat-test</artifactId>
-        <version>2.12.0-rc2-SNAPSHOT</version>
+        <version>2.12.0-rc2</version>
     </parent>
 
     <artifactId>jdk11-tests</artifactId>
@@ -22,7 +22,7 @@
             <artifactId>jackson-dataformat-avro</artifactId>
         </dependency>
 
-        <!-- JAXB sort of ubiquitous -->
+        <!-- Jakarta Classified Artifacts for the versions -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
@@ -43,6 +43,48 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jaxrs</artifactId>
+            <classifier>jakarta</classifier>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>javax.ws.rs-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-base</artifactId>
+            <classifier>jakarta</classifier>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>javax.ws.rs-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <classifier>jakarta</classifier>
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>javax.ws.rs-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Jakarta Artefacts end here -->
 
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
@@ -110,44 +152,18 @@
             </exclusions>
         </dependency>
 
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jaxrs</artifactId>
-            <classifier>jakarta</classifier>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.ws.rs</groupId>
-                    <artifactId>javax.ws.rs-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.fasterxml.jackson.jaxrs</groupId>
-            <artifactId>jackson-jaxrs-base</artifactId>
-            <classifier>jakarta</classifier>
-            <version>${project.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.ws.rs</groupId>
-                    <artifactId>javax.ws.rs-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
         <!-- GedMarc 2020/11/15 : module-named guice, test case artifacts for jax-rs in jakarta  -->
         <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>guice</artifactId>
-            <version>1.1.0.1</version>
+            <version>${guicedee.version}</version>
         </dependency>
 
         <!-- GedMarc 2020/11/15 - just until they release module-info versions -->
         <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>org.apache.cxf</artifactId>
-            <version>1.1.0.1</version>
+            <version>${guicedee.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.guicedee.services</groupId>
@@ -156,6 +172,10 @@
                 <exclusion>
                     <groupId>com.guicedee.services</groupId>
                     <artifactId>jackson-datatype-jaxrs</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.guicedee.services</groupId>
+                    <artifactId>jackson-jaxrs-json-provider</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
@@ -163,13 +183,13 @@
         <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>commons-io</artifactId>
-            <version>1.1.0.1</version>
+            <version>${guicedee.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.guicedee.servlets</groupId>
             <artifactId>guiced-rest-services</artifactId>
-            <version>1.1.0.1</version>
+            <version>${guicedee.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>com.guicedee.services</groupId>
@@ -179,19 +199,29 @@
                     <groupId>com.guicedee.services</groupId>
                     <artifactId>jackson-datatype-jaxrs</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>com.guicedee.services</groupId>
+                    <artifactId>jackson-jaxrs-json-provider</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>1.1.0.1</version>
+            <version>${guicedee.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
-            <version>1.1.0.1</version>
+            <version>${guicedee.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guicedee.services</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${guicedee.version}</version>
         </dependency>
 
     </dependencies>

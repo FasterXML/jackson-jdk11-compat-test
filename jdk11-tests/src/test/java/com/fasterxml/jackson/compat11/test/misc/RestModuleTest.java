@@ -2,6 +2,7 @@ package com.fasterxml.jackson.compat11.test.misc;
 
 import com.fasterxml.jackson.compat11.jaxrs.HelloResource;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.guicedservlets.rest.RESTContext;
 import com.guicedee.guicedservlets.undertow.GuicedUndertow;
@@ -40,6 +41,9 @@ public class RestModuleTest
 
 		RESTContext.getProviders()
 		           .add(JacksonJaxbJsonProvider.class.getCanonicalName());
+		RESTContext.getProviders()
+		           .add(JacksonJsonProvider.class.getCanonicalName());
+
 		RESTContext.getPathServices().add(HelloResource.class.getCanonicalName());
 
 		Undertow undertow = GuicedUndertow.boot("0.0.0.0", 6003);
