@@ -148,21 +148,38 @@
             <groupId>com.guicedee.services</groupId>
             <artifactId>org.apache.cxf</artifactId>
             <version>1.1.0.1</version>
-            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.guicedee.services</groupId>
+                    <artifactId>jackson-jaxrs-base</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.guicedee.services</groupId>
+                    <artifactId>jackson-datatype-jaxrs</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>com.guicedee.services</groupId>
             <artifactId>commons-io</artifactId>
             <version>1.1.0.1</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.guicedee.servlets</groupId>
             <artifactId>guiced-rest-services</artifactId>
             <version>1.1.0.1</version>
-            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.guicedee.services</groupId>
+                    <artifactId>jackson-jaxrs-base</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.guicedee.services</groupId>
+                    <artifactId>jackson-datatype-jaxrs</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>

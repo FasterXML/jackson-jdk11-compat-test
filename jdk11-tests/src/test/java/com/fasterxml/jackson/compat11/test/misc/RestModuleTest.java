@@ -1,6 +1,8 @@
 package com.fasterxml.jackson.compat11.test.misc;
 
+import com.fasterxml.jackson.compat11.jaxrs.HelloResource;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.guicedservlets.rest.RESTContext;
 import com.guicedee.guicedservlets.undertow.GuicedUndertow;
 import com.guicedee.logger.LogFactory;
@@ -28,8 +30,18 @@ public class RestModuleTest
 	public void testConfigureServlets() throws Exception
 	{
 		//Manually adding them in so it doesn't pick up oauth etc, clean jackson provider test
+		LogFactory.configureConsoleSingleLineOutput(Level.FINER);
+		GuiceContext.instance().getConfig()
+				.setPathScanning(true)
+				.setClasspathScanning(true)
+				.setAnnotationScanning(true)
+				.setMethodInfo(true);
+
+
 		RESTContext.getProviders()
 		           .add(JacksonJaxbJsonProvider.class.getCanonicalName());
+		RESTContext.getPathServices().add(HelloResource.class.getCanonicalName());
+
 		Undertow undertow = GuicedUndertow.boot("0.0.0.0", 6003);
 		//Do stuff
 		HttpClient client = HttpClient.newBuilder()

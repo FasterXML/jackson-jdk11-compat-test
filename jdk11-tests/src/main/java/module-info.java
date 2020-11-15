@@ -15,6 +15,8 @@ module jackson.compat11test {
 	requires static com.fasterxml.jackson.module.mrbean;
 	requires static com.fasterxml.jackson.dataformat.protobuf;
 
+	requires com.guicedee.guicedservlets.rest;
+
     requires com.fasterxml.jackson.dataformat.cbor;
     requires com.fasterxml.jackson.dataformat.csv;
 
