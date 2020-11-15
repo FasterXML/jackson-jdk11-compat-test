@@ -55,6 +55,9 @@
 
         <jakarta.servlet.version>5.0.0</jakarta.servlet.version>
 
+        <!-- Test EE Framework-->
+        <guicedee.version>0.0.0_0-SNAPSHOT</guicedee.version>
+
     </properties>
 
     <modules>
