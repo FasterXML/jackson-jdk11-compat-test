@@ -6,7 +6,17 @@ module jackson.compat11test {
     requires transitive com.fasterxml.jackson.databind; 
 
     // but formats require explicit inclusion
-    requires com.fasterxml.jackson.dataformat.avro;
+	// gedmarc - these don't compile with jlink so make them optional in the jlink build
+	// when the dependencies are updated, then can do
+	requires static com.fasterxml.jackson.dataformat.smile;
+    requires static com.fasterxml.jackson.dataformat.avro;
+	requires static com.fasterxml.jackson.datatype.joda;
+	requires static com.fasterxml.jackson.dataformat.yaml;
+	requires static com.fasterxml.jackson.module.mrbean;
+	requires static com.fasterxml.jackson.dataformat.protobuf;
+
+	requires com.guicedee.guicedservlets.rest;
+
     requires com.fasterxml.jackson.dataformat.cbor;
     requires com.fasterxml.jackson.dataformat.csv;
 
@@ -14,12 +24,12 @@ module jackson.compat11test {
     requires com.fasterxml.jackson.dataformat.xml;
 
     //requires compatible depedencies
-	requires com.fasterxml.jackson.dataformat.yaml;
-	requires com.fasterxml.jackson.dataformat.protobuf;
-	requires com.fasterxml.jackson.dataformat.smile;
+
+	requires jakarta.validation;
+
 	requires com.fasterxml.jackson.datatype.guava;
 	//requires com.fasterxml.jackson.dataformat.ion;
-	requires com.fasterxml.jackson.datatype.joda;
+
 	requires com.fasterxml.jackson.datatype.jaxrs;
 
 	requires static joda.time;
@@ -30,16 +40,14 @@ module jackson.compat11test {
    // and then some base modules as well
 
     requires com.fasterxml.jackson.module.jaxb;
-    //requires com.fasterxml.jackson.module.mrbean;
+    //solve for org.apache.cxf.validation.BeanValidationProvider - Bean Validation provider can not be found, no validation will be performed
+    requires org.hibernate.validator;
 
     requires com.ctc.wstx;
 
-    //Todo Needs to go static guava, static com.google.common
-	//requires com.fasterxml.jackson.datatype.guava;
-	requires com.fasterxml.jackson.module.mrbean;
 	requires java.net.http;
 	requires java.logging;
-	requires guava;
+	requires com.google.common;
 	requires jakarta.ws.rs;
 
 	// and finally open up types for tests

@@ -1,8 +1,9 @@
 package com.fasterxml.jackson.compat11.test.misc;
 
-//GedMarc 2020/11/12 - re-enable after merges done with 2.12rc2
-/*
+import com.fasterxml.jackson.compat11.jaxrs.HelloResource;
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
+import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.guicedservlets.rest.RESTContext;
 import com.guicedee.guicedservlets.undertow.GuicedUndertow;
 import com.guicedee.logger.LogFactory;
@@ -30,8 +31,21 @@ public class RestModuleTest
 	public void testConfigureServlets() throws Exception
 	{
 		//Manually adding them in so it doesn't pick up oauth etc, clean jackson provider test
+		LogFactory.configureConsoleSingleLineOutput(Level.FINER);
+		GuiceContext.instance().getConfig()
+				.setPathScanning(true)
+				.setClasspathScanning(true)
+				.setAnnotationScanning(true)
+				.setMethodInfo(true);
+
+
 		RESTContext.getProviders()
 		           .add(JacksonJaxbJsonProvider.class.getCanonicalName());
+		RESTContext.getProviders()
+		           .add(JacksonJsonProvider.class.getCanonicalName());
+
+		RESTContext.getPathServices().add(HelloResource.class.getCanonicalName());
+
 		Undertow undertow = GuicedUndertow.boot("0.0.0.0", 6003);
 		//Do stuff
 		HttpClient client = HttpClient.newBuilder()
@@ -50,4 +64,4 @@ public class RestModuleTest
 		}
 		undertow.stop();
 	}
-}*/
+}
