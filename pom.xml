@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.fasterxml.jackson</groupId>
         <artifactId>jackson-bom</artifactId>
-        <version>2.13.0</version>
+        <version>2.13.1</version>
     </parent>
     <groupId>com.fasterxml.jackson.util</groupId>
     <artifactId>jackson-jdk11-compat-test</artifactId>
     <name>Jackson-JDK11-compat-test</name>
-    <version>2.12.0-rc2</version>
+    <version>2.13.2-SNAPSHOT</version>
     <!-- @GedMarc 20190529 - JLink multi module for compatibility building- -->
     <!-- Moditect is to build foward-proof jdk8 jars-->
     <packaging>pom</packaging>
